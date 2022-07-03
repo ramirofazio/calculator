@@ -8,7 +8,6 @@ window.onload = function () {
 
     for (let i = 0; i < input.length; i++) {
         input[i].addEventListener("click", function (e) {
-            console.log(typeof parseInt(e.target.value))
             if (e.target.value === "=") {
                 rightNumbers = screenText[0].innerHTML.slice(leftNumbers.length + 1, screenText[0].innerHTML.length);
                 if (operator === "+") {
@@ -56,7 +55,13 @@ window.onload = function () {
                     operator = "%";
                 }
                 if (e.target.value === "Retr" || e.target.value === "C") {
-                    screenText[0].innerHTML = "0";
+                    if (e.target.value === "Retr") {
+                        screenText[0].innerHTML = "0";
+                    } else if (screenText[0].innerHTML.length === 1) {
+                        screenText[0].innerHTML = "0";
+                    } else {
+                        screenText[0].innerHTML = screenText[0].innerHTML.slice(0, -1);
+                    }
                 } else {
                     if (screenText[0].innerHTML !== "0") {
                         screenText[0].innerHTML += e.target.value;
